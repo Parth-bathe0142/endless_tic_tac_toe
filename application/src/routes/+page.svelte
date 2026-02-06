@@ -5,6 +5,7 @@
     let name = $state("");
     let greetMsg = $state("");
     let response = $state("");
+    let nums = $state(null);
 
     async function greet(event: Event) {
         event.preventDefault();
@@ -13,7 +14,9 @@
     }
 
     onMount(async () => {
-        response = await invoke("test_request");
+        // response = await invoke("test_request");
+        nums = await invoke("test_sqlite");
+        
     });
 </script>
 
@@ -47,6 +50,9 @@
     </form>
     <p>{greetMsg}</p>
     <p>{response}</p>
+    {#if nums}
+        <p>{nums}</p>
+    {/if}
 </main>
 
 <style>
